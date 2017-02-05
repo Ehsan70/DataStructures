@@ -44,3 +44,16 @@ void SLinkedList<E>::printAll() const {
         itr = itr->next;
     }
 }
+
+
+// Doubly linked list
+
+
+
+
+
+
+
+
+
+

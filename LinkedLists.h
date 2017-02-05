@@ -9,6 +9,8 @@
 
 template <typename E> class SLinkedList;
 
+
+// Implementing singly linked list
 template <typename E>
 class SNode {
 private:
@@ -22,7 +24,6 @@ class SLinkedList {
 public:
 
     SLinkedList();
-    
     ~SLinkedList();
     bool empty() const;
     const E& front() const;
@@ -32,6 +33,42 @@ public:
 private:
     SNode<E> * head;
 };
+
+
+
+// Implementing doubly linked list
+template <typename E>
+class DNode {
+private:
+    E elem;
+    DNode<E> * next;
+    DNode<E> * prev;
+    friend class DLinkedList<E>; //Provide SLinkedList access to these private variables
+};
+
+template <typename E>
+class DLinkedList {
+public:
+
+    DLinkedList();
+    ~DLinkedList();
+    bool empty() const;
+    const E& front() const;
+    void addFront(const E& e);
+    void addBack(const E& e);
+    void removeFront();
+    void removeBack();
+    void printAll() const;
+private:
+    DNode<E> * header;
+    DNode<E> * trailer;
+protected:
+    void add (DNode* v, const E& e); //Insert new node before v
+    void remove (DNode* v); //Remove node v
+};
+
+
+
 
 // See http://stackoverflow.com/questions/495021/why-can-templates-only-be-implemented-in-the-header-file
 #include "LinkedLists.tpp"
