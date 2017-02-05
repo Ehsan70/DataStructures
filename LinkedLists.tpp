@@ -3,34 +3,26 @@
 //
 
 #include "LinkedLists.h"
-
 using namespace std;
-
-
 template <typename E>
 SLinkedList<E>::SLinkedList():head(NULL){};
 
 template <typename E>
 bool SLinkedList<E>::empty() const {
-    return (head==NULL);
-}
-
+    return (head==NULL); }
 
 template <typename E>
 void SLinkedList<E>::addFront(const E& e) {
     SNode<E> * node = new SNode<E>;
     node->elem=e;
     node->next=head;
-    head=node;
-}
+    head=node; }
 
 template <typename E>
 void SLinkedList<E>::removeFront() {
     SNode<E> * temp = head;
     head = head->next;
-    delete temp;
-}
-
+    delete temp; }
 
 template <typename E>
 const E& SLinkedList<E>::front() const {
