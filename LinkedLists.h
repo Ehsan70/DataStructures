@@ -1,0 +1,8 @@
+//
+// Created by ehsan on 1/23/17.
+//
+
+#ifndef DATASTRUCTURES_LINKEDLISTS_H
+#define DATASTRUCTURES_LINKEDLISTS_H
+
+#endif //DATASTRUCTURES_LINKEDLISTS_H
