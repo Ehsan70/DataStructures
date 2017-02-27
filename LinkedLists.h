@@ -8,6 +8,7 @@
 #include <iostream>
 
 template <typename E> class SLinkedList;
+template <typename E> class DLinkedList;
 
 
 // Implementing singly linked list
@@ -63,8 +64,8 @@ private:
     DNode<E> * header;
     DNode<E> * trailer;
 protected:
-    void add (DNode* v, const E& e); //Insert new node before v
-    void remove (DNode* v); //Remove node v
+    void add (DNode<E>* v, const E& e); //Insert new node before v
+    void remove (DNode<E>* v); //Remove node v
 };
 
 
