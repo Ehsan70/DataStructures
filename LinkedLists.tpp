@@ -47,79 +47,87 @@ void SLinkedList<E>::printAll() const {
 
 
 // Functions for Doubly linked list
-template <typename E>
-DLinkedList<E>::DLinkedList():header(NULL),trailer(NULL){};
-
-template <typename E>
-bool DLinkedList<E>::empty() const {
-    return (header==NULL);
+template <typename F>
+DLinkedList<F>::DLinkedList():header(new DNode<F>),trailer(new DNode<F>){
+    header->next=trailer;
+    trailer->prev = header;
 }
 
-template <typename E>
-void DLinkedList<E>::addFront(const E& e) {
-    DNode<E> * node = new DNode<E>;
-    node->elem=e;
-    node->next=header;
-    node->prev=header->prev;
-    header->prev=node;
-    header=node;
+template <typename F>
+bool DLinkedList<F>::empty() const {
+    return (header->next==trailer);
 }
 
-template <typename E>
-void DLinkedList<E>::addBack(const E& e) {
-    DNode<E> * node = new DNode<E>(e);
-    node->next=trailer->next;
-    node->prev=trailer;
-    trailer->next=node;
-    trailer=node;
-
+template <typename F>
+void DLinkedList<F>::addFront(const F& e) {
+    add(header->next,e);
 }
 
-template <typename E>
-void DLinkedList<E>::removeFront() {
+template <typename F>
+void DLinkedList<F>::addBack(const F& e) {
+    add(trailer,e);
+}
+
+template <typename F>
+void DLinkedList<F>::removeFront() {
+    remove(header->next);
+/*
     DNode<E> * temp = header;
     header->next->prev=header;
     header = header->next;
     delete temp;
-}
+*/
+ }
 
-template <typename E>
-void DLinkedList<E>::removeBack() {
+template <typename F>
+void DLinkedList<F>::removeBack() {
+    remove(trailer->prev);
+    /*
     DNode<E>* temp;
     temp = trailer;
     trailer->prev->next=trailer->next;
     trailer=trailer->prev;
     delete temp;
+     */
 }
 
 
-template <typename E>
-const E& DLinkedList<E>::front() const {
-    return header->elem;
+template <typename F>
+const F& DLinkedList<F>::front() const {
+    return header->next->elem;
 }
 
-template <typename E>
-DLinkedList<E>::~DLinkedList() {
+template <typename F>
+DLinkedList<F>::~DLinkedList() {
     while (!empty()){
         removeFront();
     }
 }
 
-template <typename  E>
-void DLinkedList<E>::printAll() const {
-    DNode<E> * itr =header;
-    while (itr != NULL){
-        cout<<itr->elem<<"  ";
+template <typename  F>
+void DLinkedList<F>::printAll() const {
+    DNode<F> * itr = header->next;
+    while (itr != trailer){
+        cout<<(int)itr->elem<<"  ";
         itr = itr->next;
     }
 }
 
+/*Adds an element before V*/
+template  <typename F>
+void DLinkedList<F>::add(DNode<F> *v, const F &e) {
+    DNode<F> * newNode = new DNode<F>;
+    newNode->elem = e;
+    newNode->next = v;
+    newNode->prev = v->prev;
+    v->prev  = v->prev->next=newNode;
+    //v->prev = newNode;
+}
 
-
-
-
-
-
-
-
-
+template <typename F>
+void DLinkedList<F>::remove(DNode<F> *v) {
+    DNode<F> * temp = v;
+    v->prev->next=v->next;
+    v->next->prev = v->prev;
+    delete temp;
+}

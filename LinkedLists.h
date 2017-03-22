@@ -38,34 +38,34 @@ private:
 
 
 // Implementing doubly linked list
-template <typename E>
+template <typename F>
 class DNode {
 private:
-    E elem;
-    DNode<E> * next;
-    DNode<E> * prev;
-    friend class DLinkedList<E>; //Provide SLinkedList access to these private variables
+    F elem;
+    DNode<F> * next;
+    DNode<F> * prev;
+    friend class DLinkedList<F>; //Provide SLinkedList access to these private variables
 };
 
-template <typename E>
+template <typename F>
 class DLinkedList {
 public:
 
     DLinkedList();
     ~DLinkedList();
     bool empty() const;
-    const E& front() const;
-    void addFront(const E& e);
-    void addBack(const E& e);
+    const F& front() const;
+    void addFront(const F& e);
+    void addBack(const F& e);
     void removeFront();
     void removeBack();
     void printAll() const;
 private:
-    DNode<E> * header;
-    DNode<E> * trailer;
+    DNode<F> * header;
+    DNode<F> * trailer;
 protected:
-    void add (DNode<E>* v, const E& e); //Insert new node before v
-    void remove (DNode<E>* v); //Remove node v
+    void add (DNode<F>* v, const F& e); //Insert new node before v
+    void remove (DNode<F>* v); //Remove node v
 };
 
 

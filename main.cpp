@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
     cout << "Hello, World!" << endl;
-    SLinkedList<int> test ;
+    DLinkedList<int> test ;
     test.addFront(2);
     test.addFront(3);
     test.addFront(6);
