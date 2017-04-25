@@ -3,7 +3,7 @@ project(DataStructures)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp LinkedLists.tpp LinkedLists.h )
+set(SOURCE_FILES main.cpp LinkedLists.tpp LinkedLists.h Trees.cpp Trees.h)
 add_executable(DataStructures ${SOURCE_FILES})
 
 
