@@ -9,29 +9,48 @@
 
 using namespace std;
 
-// Implementing doubly linked list
-template <typename E>
-class Position<E> {
-private:
-    E& operator*();
-    Position* parent;
-    std::list<Position> children;
 
-    bool isRoot() const ;
-    bool isExternal() const;
-};
+typedef int Elem;
+class LinkedBinaryTree{
+protected:
+    struct Node{
+        Elem elt;
+        Node* parent;
+        Node* left;
+        Node* right;
+        Node():elt(),parent(NULL),left(NULL),right(NULL){}
+    };
 
-
-template <typename E>
-class Tree<E> {
-private:
-    Position root;
-    list<Position> allPositions;
 public:
+    // position in a tree
+    class Position{
+    private:
+        Node* _v;
+    public:
+        Position(Node* v):_v(v){}
+        Elem& operator*();
+        Position left() const;
+        Position right() const;
+        Position parent() const;
+        bool isRoot() const;
+        bool isExternal() const;
+        friend class LinkedBinaryTree; // Give tree access
+    };
+public:
+    LinkedBinaryTree();
     int size() const;
     bool empty() const;
+    Position root() const;
     list<Position> getAllPositions() const;
-};
+    void addRoot();
+    void expandExternal(const Position& p);
+    Position removeAboveExternal(const Position& p);
+public:
+    void preorder(Node* v, list<Position>& pl) const;
 
+private:
+    Node* _root;
+    int n;
+};
 
 #endif //DATASTRUCTURES_TREES_H

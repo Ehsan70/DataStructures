@@ -5,33 +5,63 @@
 #include <stddef.h>
 #include "Trees.h"
 
-bool Position::isRoot() const {
-    return this->parent == NULL ? true : false;
+Elem &LinkedBinaryTree::Position::operator*() {
+    return _v->elt;
+}
+
+LinkedBinaryTree::Position LinkedBinaryTree::Position::left() const {
+    return _v->left;
+}
+
+LinkedBinaryTree::Position LinkedBinaryTree::Position::right() const {
+    return _v->right;
+}
+
+bool LinkedBinaryTree::Position::isRoot() const {
+    return _v->parent==NULL;
+}
+
+LinkedBinaryTree::Position LinkedBinaryTree::Position::parent() const {
+    return _v->parent;
+}
+
+bool LinkedBinaryTree::Position::isExternal() const {
+    return _v->left==NULL && _v->right==NULL;
+}
+
+LinkedBinaryTree::LinkedBinaryTree() {
+
+}
+
+bool LinkedBinaryTree::empty() const {
+    return false;
+}
+
+int LinkedBinaryTree::size() const {
+    return 0;
+}
+
+LinkedBinaryTree::Position LinkedBinaryTree::root() const {
+    return LinkedBinaryTree::Position(nullptr);
 }
 
 
-bool Position::isExternal() const {
-    return this->children.size() == 0 ? true : false;
+void LinkedBinaryTree::addRoot() {
+
 }
 
-Position* Position::parent() const {
-    if(this->isRoot()) return NULL;
+void LinkedBinaryTree::expandExternal(const LinkedBinaryTree::Position &p) {
+
 }
 
-
-// Implementation for tree class
-int Tree::size() const {
-    return this->allPositions.size();
+LinkedBinaryTree::Position LinkedBinaryTree::removeAboveExternal(const LinkedBinaryTree::Position &p) {
+    return LinkedBinaryTree::Position(nullptr);
 }
 
-bool Tree::empty() const {
-    return this->allPositions.size()==0 ? true : false;
+void LinkedBinaryTree::preorder(LinkedBinaryTree::Node *v, list <Position> &pl) const {
+
 }
 
-list<Position> Tree::getAllPositions() const {
-    return allPositions;
+list<LinkedBinaryTree::Position> LinkedBinaryTree::getAllPositions() const {
+
 }
-
-
-
-
